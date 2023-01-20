@@ -1,7 +1,6 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import 'flatpickr/dist/themes/dark.css';
-import '../css/timer.css';
 import Notiflix from 'notiflix';
 
 const input = document.querySelector('input');
