@@ -79,25 +79,17 @@ const options = {
         const timeLeft = unixSelectedDate - now;
         const timeLeftMS = convertMs(timeLeft);
 
+        if (timeLeft <= 0) {
+          clearInterval(this.intervalId);
+          Notiflix.Report.info('Hey ✋', 'Time is up!', 'OK');
+          this.isActive = false;
+          return;
+        }
+
         refs.days.textContent = timeLeftMS.days;
         refs.hours.textContent = timeLeftMS.hours;
         refs.minutes.textContent = timeLeftMS.minutes;
         refs.seconds.textContent = timeLeftMS.seconds;
-
-        const stopTimer = () => {
-          clearInterval(this.intervalId);
-
-          refs.days.textContent = '00';
-          refs.hours.textContent = '00';
-          refs.minutes.textContent = '00';
-          refs.seconds.textContent = '00';
-        };
-
-        if (timeLeft <= 0) {
-          stopTimer();
-          Notiflix.Report.info('Hey ✋', 'Time is up!', 'OK');
-          this.isActive = false;
-        }
 
         console.log(timeLeftMS);
       }, 1000);
